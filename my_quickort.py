@@ -32,6 +32,6 @@ def quick_sort(list, start, end):
 
 
 if __name__ == '__main__':
-    li = [6,1,2,7,9,3,4,5,10,8]
+    li = [6, 1, 2, 7, 9, 3, 4, 5, 10, 8]
     quick_sort(li, 0, len(li)-1)
     print(li)
