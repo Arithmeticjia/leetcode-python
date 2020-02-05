@@ -8,9 +8,8 @@ class Solution(object):
         rows = [{} for i in range(9)]
         # 列
         columns = [{} for i in range(9)]
-        # 每一小格
+        # 所有小格
         boxes = [{} for i in range(9)]
-
 
         for i in range(9):
             for j in range(9):
@@ -18,8 +17,7 @@ class Solution(object):
                 if num != '.':
                     num = int(num)
                     # 第几个box
-                    box_index1 = (i // 3) * 3 + j // 3
-                    box_index = i // 3 + j // 3 + 2
+                    box_index = (i // 3) * 3 + j // 3
                     # keep the current cell value
                     rows[i][num] = rows[i].get(num, 0) + 1
                     columns[j][num] = columns[j].get(num, 0) + 1
