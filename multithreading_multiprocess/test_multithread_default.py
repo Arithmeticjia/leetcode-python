@@ -2,7 +2,7 @@ import threading
 import time
 
 '''
-join的作用：等所有线程结束
+join的作用：阻塞主线程，等待子线程执行完成
 '''
 
 
