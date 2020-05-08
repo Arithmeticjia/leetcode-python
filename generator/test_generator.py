@@ -6,6 +6,8 @@ def fibonacci(n):  # 生成器函数 - 斐波那契
     while True:
         if (counter > n):
             return
+        # 在调用生成器运行的过程中，每次遇到 yield 时函数会暂停并保存当前所有的运行信息，返回 yield 的值
+        # 并在下一次执行 next() 方法时从当前位置继续运行。
         yield a
         a, b = b, a + b
         counter += 1
