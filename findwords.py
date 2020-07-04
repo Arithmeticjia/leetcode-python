@@ -4,7 +4,7 @@ class Solution(object):
         :type words: List[str]
         :rtype: List[str]
         """
-        r = map(set, ['qwertyuiop','asdfghjkl','zxcvbnm'])
+        r = map(set, ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'])
         first = 'qwertyuiop'
         second = 'asdfghjkl'
         third = 'zxcvbnm'
@@ -26,4 +26,4 @@ class Solution(object):
 
 if __name__ == '__main__':
     new = Solution()
-    new.findWords(["Hello","Alaska","Dad","Peace"])
+    new.findWords(["Hello", "Alaska", "Dad", "Peace"])
