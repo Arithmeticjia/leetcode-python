@@ -78,7 +78,7 @@ def get_proxy_list():
         if item['type'] == 'http' and item['anonymity'] == 'high_anonymous' and item['response_time'] < 7:
             proxy_list.append(item['host'] + ':' + str(item['port']))
     print('Done--get_proxy_list!')
-    f = open('proxy_list.txt', 'w')
+    f = open('/Users/Arithmetic/PycharmProjects/leetcode/csdn_visit/proxy_list.txt', 'w')
     for ip in proxy_list:
         f.write(ip + '\n')
     f.close()
@@ -87,7 +87,7 @@ def get_proxy_list():
 def csdn():
     article_lists = []
     try:
-        fa = open('/Users/Arithmetic/wuhan/article_list.txt', 'r')
+        fa = open('/Users/Arithmetic/PycharmProjects/leetcode/csdn_visit/article_list.txt', 'r')
         article_file = fa.readlines()
         for i in article_file:
             article_lists.append(i.strip('\n'))
@@ -106,15 +106,17 @@ def csdn():
         print('no')
 
 
-def csdn_exists():
-    article_lists = []
-    proxy_lists = []
+article_lists = []
+proxy_lists = []
+
+
+def get_articles_proxy():
     try:
-        f1 = open('/Users/Arithmetic/wuhan/article_list.txt', 'r')
+        f1 = open('/Users/Arithmetic/PycharmProjects/leetcode/csdn_visit/article_list.txt', 'r')
         article_file = f1.readlines()
         for i in article_file:
             article_lists.append(i.strip('\n'))
-        f2 = open('/Users/Arithmetic/wuhan/proxy_list.txt', 'r')
+        f2 = open('/Users/Arithmetic/PycharmProjects/leetcode/csdn_visit/proxy_list.txt', 'r')
         proxy_file = f2.readlines()
         for j in proxy_file:
             proxy_lists.append(j.strip('\n'))
@@ -122,26 +124,31 @@ def csdn_exists():
         f2.close()
     except:
         print('read txt fail')
+
+
+def csdn_exists():
     article = article_lists[random.randint(0, len(article_lists) - 1)]
     proxy = {'http': proxy_lists[random.randint(0, len(proxy_lists) - 1)]}
     header = {'User-Agent': User_Agent[random.randint(0, len(User_Agent) - 1)],
               'referer': 'http://blog.csdn.net'}
     try:
-        requests.get(article.replace('https', 'https'), headers=header, proxies=proxy,
+        requests.get(article.replace('https', 'https'), headers=header, 
+                                                        proxies=proxy,
                      cookies=cookie[random.randint(0, len(cookie) - 1)], timeout=7)
         print('ok ip:' + proxy['http'])
     except:
         print('no')
 
 
-get_proxy_list()
+# get_proxy_list()
 # get_article_list()
+get_articles_proxy()
 
 
 def do():
     while True:
-        csdn()
-        # csdn_exists()
+        # csdn()
+        csdn_exists()
         # if len(proxy_list)<200:
         #   f=open('output.out','w')
         #  print(proxy_list,file=f)
@@ -150,7 +157,7 @@ def do():
 
 
 mission = list()  # 多线程跑的快
-nums = 50
+nums = 20
 for i in range(nums):
     mission.append(Thread(target=do))
 for i in range(nums):
