@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import re
+import time
 import json
 import random
 import datetime
@@ -101,6 +102,7 @@ def csdn():
     try:
         requests.get(article.replace('https', 'http'), headers=header, proxies=proxy,
                      cookies=cookie[random.randint(0, len(cookie) - 1)], timeout=7)
+        time.sleep(1)
         print('ok ip:' + proxy['http'])
     except:
         print('no')
@@ -165,3 +167,8 @@ for i in range(nums):
     mission[i].start()
 for i in range(nums):
     mission[i].join()
+
+
+if __name__ == '__main__':
+    get_proxy_list()
+    csdn_exists()
