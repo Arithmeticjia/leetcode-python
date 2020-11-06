@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
-import re
+from requests import ReadTimeout, ConnectionError
 import time
 import json
 import random
@@ -89,7 +89,7 @@ def get_proxy_list():
         if item['type'] == 'http' and item['anonymity'] == 'high_anonymous' and item['response_time'] < 7:
             proxy_list.append(item['host'] + ':' + str(item['port']))
     print('Done--get_proxy_list!')
-    f = open('/Users/Arithmetic/PycharmProjects/leetcode/csdn_visit/proxy_list.txt', 'w')
+    f = open('/Users/Arithmetic/PycharmProjects/leetcode/csdn_visit/proxy_list.txt', 'a')
     for ip in proxy_list:
         f.write(ip + '\n')
     f.close()
@@ -148,7 +148,7 @@ def csdn_exists():
                      proxies=proxy,
                      cookies=cookie[random.randint(0, len(cookie) - 1)], timeout=7)
         print('ok ip:' + proxy['http'])
-    except:
+    except (ConnectionError, ReadTimeout):
         print('no')
 
 

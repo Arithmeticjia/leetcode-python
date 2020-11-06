@@ -20,6 +20,6 @@ def test():
         t = MyThread()
         t.start()
 
-        
+
 if __name__ == '__main__':
     test()
