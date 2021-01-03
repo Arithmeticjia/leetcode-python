@@ -152,7 +152,7 @@ def csdn_exists():
         print('no')
 
 
-# get_proxy_list()
+get_proxy_list()
 # get_article_list()
 get_articles_proxy()
 
